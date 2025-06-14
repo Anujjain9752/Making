@@ -131,33 +131,36 @@
   </form>
 
   <hr>
-  <h1>All Products</h1>
-  <% products.forEach(prod => { %>
-    <form method="POST" action="/update-product/<%= prod._id %>">
-      <input name="name" value="<%= prod.name %>" />
-      <input name="mrp" value="<%= prod.mrp %>" />
-      <input name="ourPrice" value="<%= prod.ourPrice %>" />
-      <textarea name="description"><%= prod.description %></textarea>
-      <br>
-      <strong>Category:</strong> <%= prod.category ? prod.category.name : 'N/A' %><br>
-      <strong>Subcategory:</strong> <%= prod.subcategory ? prod.subcategory.name : 'N/A' %><br>
-      <select name="categoryId">
-        <% categories.forEach(cat => { %>
-          <option value="<%= cat._id %>" <%= (prod.category && cat._id.toString() === prod.category._id.toString()) ? 'selected' : '' %>><%= cat.name %></option>
-        <% }) %>
-      </select>
-      <select name="subcategoryId">
-        <% subcategories.forEach(sub => { %>
-          <option value="<%= sub._id %>" <%= (prod.subcategory && sub._id.toString() === prod.subcategory._id.toString()) ? 'selected' : '' %>><%= sub.name %></option>
-        <% }) %>
-      </select>
-      <button type="submit">Update</button>
-    </form>
-    <form method="POST" action="/delete-product/<%= prod._id %>" style="display:inline;">
-      <button type="submit">Delete</button>
-    </form>
-    <hr>
-  <% }) %>
+<h1>All Products</h1>
+<% products.forEach(prod => { %>
+  <form method="POST" action="/update-product/<%= prod._id %>">
+    <input name="name" value="<%= prod.name %>" />
+    <input name="mrp" value="<%= prod.mrp %>" />
+    <input name="ourPrice" value="<%= prod.ourPrice %>" />
+    <textarea name="description"><%= prod.description %></textarea>
+    <br>
+    <strong>Category:</strong> <%= prod.category ? prod.category.name : 'N/A' %><br>
+    <strong>Subcategory:</strong> <%= prod.subcategory ? prod.subcategory.name : 'N/A' %><br>
+
+    <select name="categoryId">
+      <% categories.forEach(cat => { %>
+        <option value="<%= cat._id %>" <%= (prod.category && cat._id.toString() === prod.category._id.toString()) ? 'selected' : '' %>><%= cat.name %></option>
+      <% }) %>
+    </select>
+
+    <select name="subcategoryId">
+      <% subcategories.forEach(sub => { %>
+        <option value="<%= sub._id %>" <%= (prod.subcategory && sub._id.toString() === prod.subcategory._id.toString()) ? 'selected' : '' %>><%= sub.name %></option>
+      <% }) %>
+    </select>
+    <button type="submit">Update</button>
+  </form>
+  <form method="POST" action="/delete-product/<%= prod._id %>" style="display:inline;">
+    <button type="submit">Delete</button>
+  </form>
+  <hr>
+<% }) %>
+
 
   <form method="POST" action="/add-product">
     <input name="name" placeholder="Product Name" />
