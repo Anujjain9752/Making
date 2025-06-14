@@ -109,15 +109,15 @@
   <hr>
   <h1>All Subcategories</h1>
   <ul>
-<% subcategories.forEach(sub => { %>
-  <li>
-    <%= sub.name %> 
-    (Category: <%= sub.category ? sub.category.name : 'N/A' %>)
-    <form method="POST" action="/delete-subcategory/<%= sub._id %>" style="display:inline;">
-      <button type="submit">Delete</button>
-    </form>
-  </li>
-<% }); %>
+    <% subcategories.forEach(sub => { %>
+      <li>
+        <%= sub.name %> 
+        (Category: <%= sub.category ? sub.category.name : 'N/A' %>)
+        <form method="POST" action="/delete-subcategory/<%= sub._id %>" style="display:inline;">
+          <button type="submit">Delete</button>
+        </form>
+      </li>
+    <% }); %>
   </ul>
 
   <form method="POST" action="/add-subcategory">
@@ -139,6 +139,8 @@
       <input name="ourPrice" value="<%= prod.ourPrice %>" />
       <textarea name="description"><%= prod.description %></textarea>
       <br>
+      <strong>Category:</strong> <%= prod.category ? prod.category.name : 'N/A' %><br>
+      <strong>Subcategory:</strong> <%= prod.subcategory ? prod.subcategory.name : 'N/A' %><br>
       <select name="categoryId">
         <% categories.forEach(cat => { %>
           <option value="<%= cat._id %>" <%= (prod.category && cat._id.toString() === prod.category._id.toString()) ? 'selected' : '' %>><%= cat.name %></option>
